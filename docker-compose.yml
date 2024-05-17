@@ -1,0 +1,45 @@
+version: "3.7"
+services:
+
+  mysqldb:
+    image: "mysql:8.0"
+    restart: always
+    ports:
+      - 3307:3307
+    networks:
+      - springapimysql-net  
+    environment:
+      MYSQL_DATABASE: basics
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: sa
+      MYSQL_ROOT_PASSWORD: seyon2015
+      
+  api_service:
+    build: 
+      context: ./employee-system-api
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - springapimysql-net
+    environment:
+      - spring.datasource.url=jdbc:mysql://mysqldb:3306/basics?allowPublicKeyRetrieval=true    
+    depends_on:
+      - mysqldb
+    volumes:
+      - .m2:/root/.m2
+      
+  
+  web:
+    build:
+      context: ./employee-management-system-ui
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+    stdin_open: true
+    
+networks:
+  springapimysql-net:
