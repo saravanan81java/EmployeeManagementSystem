@@ -12,7 +12,7 @@ services:
       MYSQL_DATABASE: basics
       MYSQL_USER: sa
       MYSQL_PASSWORD: sa
-      MYSQL_ROOT_PASSWORD: seyon2015
+      MYSQL_ROOT_PASSWORD: sa
       
   api_service:
     build: 
