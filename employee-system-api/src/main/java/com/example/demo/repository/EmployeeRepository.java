@@ -15,6 +15,9 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
 	@Query("SELECT CASE WHEN COUNT(e) > 0 THEN true ELSE false END FROM EmployeeEntity e WHERE e.empName = :empName")
     boolean existsByEmployeeName(@Param("empName") String empName);
 	
+	@Query("SELECT CASE WHEN COUNT(e) > 0 THEN true ELSE false END FROM EmployeeEntity e WHERE e.empName = :empName and e.department.departmentName = :departmentName")
+    boolean existsByEmployeeNameAndDepartment(@Param("empName") String empName, @Param("departmentName") String departmentName);
+	
 	@Query("SELECT e FROM EmployeeEntity e WHERE e.department.id = :depId")
 	List<EmployeeEntity> getEmployeeByDepId(@Param("depId") Long depId);
 	

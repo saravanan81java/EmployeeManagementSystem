@@ -28,18 +28,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee createEmployee(Employee employee) throws Exception {
-    	//if(!employeeRepository.existsByEmployeeName(employee.getEmpName())) {
-		Optional<DepartmentEntity> departmentEntity = departmentRepository.findByDepartmentName(employee.getDepartment().getDepartmentName());
-		 
-		if(departmentEntity.isPresent()) {
-			EmployeeEntity employeeEntity = new EmployeeEntity();
-	        BeanUtils.copyProperties(employee, employeeEntity);
-	        employeeEntity.setDepartment(departmentEntity.get());
-	        employeeRepository.save(employeeEntity);
-		}else {
-			throw new Exception("Department not found !!!");
-		}
-    	//}
+    	
+    	// Server end Filed validation.
+    	String employeeName = employee.getEmpName();
+    	String departmentName = employee.getDepartment().getDepartmentName();
+    	
+    	if(!employeeRepository.existsByEmployeeNameAndDepartment(employeeName, departmentName)) {
+			Optional<DepartmentEntity> departmentEntity = departmentRepository.findByDepartmentName(employee.getDepartment().getDepartmentName());
+			if(departmentEntity.isPresent()) {
+				EmployeeEntity employeeEntity = new EmployeeEntity();
+		        BeanUtils.copyProperties(employee, employeeEntity);
+		        employeeEntity.setDepartment(departmentEntity.get());
+		        employeeRepository.save(employeeEntity);
+			}else {
+				throw new Exception("Department not found !!!");
+			}
+    	}else {
+    		throw new Exception("Employee already existest !!! -   [ "+ departmentName +" ] department!!!");
+    	}
         return employee;
     }
 

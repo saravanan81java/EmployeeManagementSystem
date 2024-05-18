@@ -17,7 +17,12 @@ const AddDepartment = () => {
 
   const saveDepartment = (e) => {
     e.preventDefault();
-    console.log(department);
+     
+    if(department.departmentName == '') {
+      alert("Department name field is required");
+      return;
+    }
+    
     EmployeeService.saveDepartment(department)
       .then((response) => {
         console.log(response);

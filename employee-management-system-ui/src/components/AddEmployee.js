@@ -44,6 +44,22 @@ const AddEmployee = () => {
 
   const saveEmployee = (e) => {
     e.preventDefault();
+    
+    if(employee.empName == '') {
+      alert("Employee name field is required");
+      return;
+    }
+
+    if(employee.salary == '') {
+      alert("Salary field is required");
+      return;
+    }
+
+    if(employee.department.departmentName == '') {
+      alert("Department name field is required");
+      return;
+    }
+
     EmployeeService.saveEmployee(employee)
       .then((response) => {
         console.log(response);
