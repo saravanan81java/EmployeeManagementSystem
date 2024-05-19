@@ -57,7 +57,6 @@ public class EmployeeServiceTest {
 	    employeeEntity2.setEmpName("Jane Smith");
 	    employeeEntity2.setSalary(60000.0);
 	    employeeEntity2.setDepartment(departmentEntity);
-    
 	    
 	when(employeeRepository.findAll()).thenReturn(Arrays.asList(employeeEntity1, employeeEntity2));
 
@@ -68,18 +67,18 @@ public class EmployeeServiceTest {
     assertEquals(2, employees.size());
 
     Employee employee1 = employees.get(0);
-    assertEquals(1L, employee1.getId());
-    assertEquals("John Doe", employee1.getEmpName());
-    assertEquals(50000.0, employee1.getSalary());
-    assertEquals(1L, employee1.getDepartment().getDepartmentId());
-    assertEquals("Engineering", employee1.getDepartment().getDepartmentName());
+	    assertEquals(1L, employee1.getId());
+	    assertEquals("John Doe", employee1.getEmpName());
+	    assertEquals(50000.0, employee1.getSalary());
+	    assertEquals(1L, employee1.getDepartment().getDepartmentId());
+	    assertEquals("Engineering", employee1.getDepartment().getDepartmentName());
 
     Employee employee2 = employees.get(1);
-    assertEquals(2L, employee2.getId());
-    assertEquals("Jane Smith", employee2.getEmpName());
-    assertEquals(60000.0, employee2.getSalary());
-    assertEquals(1L, employee2.getDepartment().getDepartmentId());
-    assertEquals("Engineering", employee2.getDepartment().getDepartmentName());
+	    assertEquals(2L, employee2.getId());
+	    assertEquals("Jane Smith", employee2.getEmpName());
+	    assertEquals(60000.0, employee2.getSalary());
+	    assertEquals(1L, employee2.getDepartment().getDepartmentId());
+	    assertEquals("Engineering", employee2.getDepartment().getDepartmentName());
 
     verify(employeeRepository, times(1)).findAll();
     }
