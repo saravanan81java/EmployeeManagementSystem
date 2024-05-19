@@ -26,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
-    @Override
+	@Override
     public Employee createEmployee(Employee employee) throws Exception {
     	
     	// Server end Filed validation.
@@ -51,8 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getAllEmployees() {
-        List<EmployeeEntity> employeeEntities
-                = employeeRepository.findAll();
+        List<EmployeeEntity> employeeEntities = employeeRepository.findAll();
         List<Employee> employees = employeeEntities
                 .stream()
                 .map(emp -> { 

@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class Employee {
     private Long id;
     private String empName;
-    private Long salary;
+    private Double salary;
     private Department department;
 }

@@ -1,11 +1,15 @@
 package com.example.demo;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.boot.test.context.SpringBootTest;
 
-//@SpringBootTest
+@SpringBootTest
 class BasicApplicationTests {
 
-//	@Test
+	@BeforeEach
 	void contextLoads() {
+		
 	}
 
+	
 }

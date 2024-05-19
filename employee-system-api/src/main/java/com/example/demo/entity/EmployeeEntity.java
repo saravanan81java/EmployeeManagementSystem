@@ -22,7 +22,7 @@ public class EmployeeEntity {
     
     @Column(unique = false)
     private String empName;
-    private long salary;
+    private Double salary;
     
     
     @ManyToOne(fetch = FetchType.LAZY)
