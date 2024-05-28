@@ -30,4 +30,6 @@ public interface EmployeeRepository extends JpaRepository<EmployeeEntity, Long> 
 	@Query("SELECT e FROM EmployeeEntity e WHERE e.salary < :salary")
     List<EmployeeEntity> getBySalaryLessThan(@Param("salary") Long salary);
 	
+	List<EmployeeEntity> findByEmpName(String empName);
+	
 }

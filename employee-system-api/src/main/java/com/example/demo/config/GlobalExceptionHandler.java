@@ -10,7 +10,8 @@ public class GlobalExceptionHandler {
 	
 	@ExceptionHandler({ Exception.class })
     public ResponseEntity<Object> handleGlobalException(Exception exception) {
-		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(exception.getLocalizedMessage());
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+				.body(exception.getLocalizedMessage());
 	}
 
 }
